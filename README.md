@@ -1,6 +1,6 @@
 # 🚀 Cyber Risk Assessment Tool 🛡️
 
-![Cyber Risk Tool](https://source.unsplash.com/featured/?cybersecurity,technology)
+![Cyber Risk Tool](https://cyber-risk-assessment.onrender.com)
 
 ## 🌐 Overview
 The **Cyber Risk Assessment Tool** is an interactive web application designed to **evaluate an organization's cyber risk** and estimate an **insurance premium** based on security factors. The tool uses **a futuristic, cyberpunk-themed UI** with tooltips and animations for a **next-gen user experience**.
