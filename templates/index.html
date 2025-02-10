@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Risk Assessment</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Cyber Risk Assessment</h1>
+
+    <form id="riskForm">
+        <label for="companySize" class="tooltip">Company Size:
+            <span class="tooltiptext">Small: < 50 employees, Medium: 50-500, Large: > 500</span>
+        </label>
+        <select id="companySize">
+            <option value="small">Small (< 50 employees)</option>
+            <option value="medium">Medium (50-500 employees)</option>
+            <option value="large">Large (> 500 employees)</option>
+        </select><br><br>
+
+        <label for="firewall" class="tooltip">Firewall:
+            <span class="tooltiptext">A firewall protects your network from cyber threats.</span>
+        </label>
+        <select id="firewall">
+            <option value="yes">Yes (Installed)</option>
+            <option value="no">No (Not Installed)</option>
+        </select><br><br>
+
+        <label for="dataSensitivity" class="tooltip">Data Sensitivity:
+            <span class="tooltiptext">Low: Basic data, Medium: Customer data, High: Financial & medical data</span>
+        </label>
+        <select id="dataSensitivity">
+            <option value="low">Low (Basic Data)</option>
+            <option value="medium">Medium (Customer Info)</option>
+            <option value="high">High (Financial/Medical Records)</option>
+        </select><br><br>
+
+        <label for="incidentResponse" class="tooltip">Incident Response Plan:
+            <span class="tooltiptext">A plan for responding to cyber attacks. Required for large businesses.</span>
+        </label>
+        <select id="incidentResponse">
+            <option value="yes">Yes (Have a plan)</option>
+            <option value="no">No (No plan in place)</option>
+        </select><br><br>
+
+        <label for="encryption" class="tooltip">Data Encryption:
+            <span class="tooltiptext">Encrypting data makes it unreadable to hackers.</span>
+        </label>
+        <select id="encryption">
+            <option value="yes">Yes (Data is encrypted)</option>
+            <option value="no">No (Data is not encrypted)</option>
+        </select><br><br>
+
+        <button type="button" onclick="calculateRisk()">Calculate Risk</button>
+    </form>
+
+    <div id="results" style="display:none;">
+        <h2>Risk Assessment Results</h2>
+        <p>Risk Score: <span id="riskScore"></span></p>
+        <p>Estimated Premium: <span id="premium"></span></p>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+/* Cyberpunk Futuristic Style */
+body {
+    font-family: 'Orbitron', sans-serif;
+    background-color: #0d1117;
+    color: #00ffcc;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Heading */
+h1 {
+    font-size: 2.5rem;
+    text-shadow: 0 0 15px #00ffcc;
+}
+
+/* Form Styles */
+form {
+    background: rgba(0, 255, 204, 0.1);
+    padding: 20px;
+    border-radius: 12px;
+    width: 50%;
+    margin: auto;
+    box-shadow: 0 0 20px #00ffcc;
+}
+
+label {
+    display: block;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    text-shadow: 0 0 8px #00ffcc;
+    position: relative;
+}
+
+/* Tooltips */
+.tooltip {
+    position: relative;
+    cursor: pointer;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 250px;
+    background-color: #222;
+    color: #00ffcc;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    box-shadow: 0 0 10px #00ffcc;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Dropdowns */
+select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    background: #121212;
+    color: #00ffcc;
+    box-shadow: 0 0 5px #00ffcc;
+    font-size: 1rem;
+}
+
+/* Button */
+button {
+    background: linear-gradient(90deg, #00ffcc, #0088ff);
+    color: #0d1117;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 10px #00ffcc;
+    margin-top: 20px;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #0088ff, #00ffcc);
+    box-shadow: 0 0 20px #00ffcc;
+}
+
+/* Results */
+#results {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    background: rgba(0, 255, 204, 0.2);
+    box-shadow: 0 0 15px #00ffcc;
+    width: 50%;
+    margin: auto;
+    display: none;
+}
+
+/* Custom Glow Animation */
+@keyframes glow {
+    0% { text-shadow: 0 0 5px #00ffcc; }
+    50% { text-shadow: 0 0 15px #00ffcc; }
+    100% { text-shadow: 0 0 5px #00ffcc; }
+}
+
+h1, h2, label {
+    animation: glow 1.5s infinite alternate;
+}
