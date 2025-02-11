@@ -1,66 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Risk Assessment</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber Risk Assessment</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Cyber Risk Assessment</h1>
-
-    <form id="riskForm">
-        <label for="companySize" class="tooltip">Company Size:
-            <span class="tooltiptext">Small: < 50 employees, Medium: 50-500, Large: > 500</span>
-        </label>
-        <select id="companySize">
-            <option value="small">Small (< 50 employees)</option>
-            <option value="medium">Medium (50-500 employees)</option>
-            <option value="large">Large (> 500 employees)</option>
-        </select><br><br>
-
-        <label for="firewall" class="tooltip">Firewall:
-            <span class="tooltiptext">A firewall protects your network from cyber threats.</span>
-        </label>
-        <select id="firewall">
-            <option value="yes">Yes (Installed)</option>
-            <option value="no">No (Not Installed)</option>
-        </select><br><br>
-
-        <label for="dataSensitivity" class="tooltip">Data Sensitivity:
-            <span class="tooltiptext">Low: Basic data, Medium: Customer data, High: Financial & medical data</span>
-        </label>
-        <select id="dataSensitivity">
-            <option value="low">Low (Basic Data)</option>
-            <option value="medium">Medium (Customer Info)</option>
-            <option value="high">High (Financial/Medical Records)</option>
-        </select><br><br>
-
-        <label for="incidentResponse" class="tooltip">Incident Response Plan:
-            <span class="tooltiptext">A plan for responding to cyber attacks. Required for large businesses.</span>
-        </label>
-        <select id="incidentResponse">
-            <option value="yes">Yes (Have a plan)</option>
-            <option value="no">No (No plan in place)</option>
-        </select><br><br>
-
-        <label for="encryption" class="tooltip">Data Encryption:
-            <span class="tooltiptext">Encrypting data makes it unreadable to hackers.</span>
-        </label>
-        <select id="encryption">
-            <option value="yes">Yes (Data is encrypted)</option>
-            <option value="no">No (Data is not encrypted)</option>
-        </select><br><br>
-
-        <button type="button" onclick="calculateRisk()">Calculate Risk</button>
-    </form>
-
-    <div id="results" style="display:none;">
-        <h2>Risk Assessment Results</h2>
-        <p>Risk Score: <span id="riskScore"></span></p>
-        <p>Estimated Premium: <span id="premium"></span></p>
+  <header>
+    <div class="logo">
+      <!-- Cyber Risk Assessment Logo -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#00d1b2;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#009688;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <!-- Shield representing security -->
+        <path d="M100,20 L170,50 L150,140 L50,140 L30,50 Z" fill="url(#grad)" stroke="#004d40" stroke-width="5"/>
+        <!-- Check mark representing risk assessment -->
+        <path d="M60,90 L90,120 L140,60" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </div>
+    <h1>Cyber Risk Assessment</h1>
+  </header>
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <form id="riskForm">
+    <label for="companySize" class="tooltip">
+      Company Size:
+      <span class="tooltiptext">Small: &lt; 50 employees, Medium: 50-500, Large: &gt; 500</span>
+    </label>
+    <select id="companySize">
+      <option value="small">Small (&lt; 50 employees)</option>
+      <option value="medium">Medium (50-500 employees)</option>
+      <option value="large">Large (&gt; 500 employees)</option>
+    </select>
+    <br><br>
+
+    <label for="firewall" class="tooltip">
+      Firewall:
+      <span class="tooltiptext">A firewall protects your network from cyber threats.</span>
+    </label>
+    <select id="firewall">
+      <option value="yes">Yes (Installed)</option>
+      <option value="no">No (Not Installed)</option>
+    </select>
+    <br><br>
+
+    <label for="dataSensitivity" class="tooltip">
+      Data Sensitivity:
+      <span class="tooltiptext">Low: Basic data, Medium: Customer data, High: Financial &amp; medical data</span>
+    </label>
+    <select id="dataSensitivity">
+      <option value="low">Low (Basic Data)</option>
+      <option value="medium">Medium (Customer Info)</option>
+      <option value="high">High (Financial/Medical Records)</option>
+    </select>
+    <br><br>
+
+    <label for="incidentResponse" class="tooltip">
+      Incident Response Plan:
+      <span class="tooltiptext">A plan for responding to cyber attacks. Required for large businesses.</span>
+    </label>
+    <select id="incidentResponse">
+      <option value="yes">Yes (Have a plan)</option>
+      <option value="no">No (No plan in place)</option>
+    </select>
+    <br><br>
+
+    <label for="encryption" class="tooltip">
+      Data Encryption:
+      <span class="tooltiptext">Encrypting data makes it unreadable to hackers.</span>
+    </label>
+    <select id="encryption">
+      <option value="yes">Yes (Data is encrypted)</option>
+      <option value="no">No (Data is not encrypted)</option>
+    </select>
+    <br><br>
+
+    <button type="button" onclick="calculateRisk()">Calculate Risk</button>
+  </form>
+
+  <div id="results" style="display:none;">
+    <h2>Risk Assessment Results</h2>
+    <p>Risk Score: <span id="riskScore"></span></p>
+    <p>Estimated Premium: <span id="premium"></span></p>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
