@@ -15,7 +15,7 @@ function calculateRisk() {
       encryption: encryption
     };
   
-    // Call the AI-enabled endpoint to calculate risk, premium, and suggestions
+    // Call the AI-enabled endpoint for risk prediction
     fetch("/calculate_risk_ai", {
       method: "POST",
       headers: {
@@ -23,44 +23,52 @@ function calculateRisk() {
       },
       body: JSON.stringify(data)
     })
-      .then(response => response.json())
-      .then(result => {
-        // Extract values returned from the backend
-        const riskScore = result.riskScore;
-        const premium = result.premium;
-        const suggestions = result.suggestions;
+    .then(response => response.json())
+    .then(result => {
+      if(result.error) {
+        displayError(result.error);
+      } else {
+        displayResults(result);
+      }
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      displayError("An error occurred. Please try again.");
+    });
+  }
   
-        // Build the suggestions HTML (if any)
-        let suggestionsHTML = "";
-        if (suggestions && suggestions.length > 0) {
-          suggestionsHTML = "<ul>";
-          suggestions.forEach(suggestion => {
-            suggestionsHTML += `<li>${suggestion}</li>`;
-          });
-          suggestionsHTML += "</ul>";
-        }
-  
-        // Smooth fade-in effect for results
-        const resultsDiv = document.getElementById("results");
-        resultsDiv.style.opacity = "0";
-        resultsDiv.style.display = "block";
-  
-        setTimeout(() => {
-          resultsDiv.style.opacity = "1";
-          document.getElementById("riskScore").textContent = riskScore;
-          document.getElementById("premium").textContent = "$" + premium.toLocaleString();
-          document.getElementById("suggestions").innerHTML = suggestionsHTML;
-        }, 300);
-      })
-      .catch(error => {
-        console.error("Error:", error);
-        const resultsDiv = document.getElementById("results");
-        resultsDiv.style.opacity = "0";
-        resultsDiv.style.display = "block";
-        setTimeout(() => {
-          resultsDiv.style.opacity = "1";
-          resultsDiv.innerHTML = `<p class="error">An error occurred. Please try again.</p>`;
-        }, 300);
+  function displayResults(result) {
+    const riskScore = result.riskScore;
+    const premium = result.premium;
+    const suggestions = result.suggestions;
+    let suggestionsHTML = "";
+    if (suggestions && suggestions.length > 0) {
+      suggestionsHTML = "<ul>";
+      suggestions.forEach(suggestion => {
+        suggestionsHTML += `<li>${suggestion}</li>`;
       });
+      suggestionsHTML += "</ul>";
+    }
+  
+    const resultsDiv = document.getElementById("results");
+    resultsDiv.style.opacity = "0";
+    resultsDiv.style.display = "block";
+  
+    setTimeout(() => {
+      resultsDiv.style.opacity = "1";
+      document.getElementById("riskScore").textContent = riskScore;
+      document.getElementById("premium").textContent = "$" + premium.toLocaleString();
+      document.getElementById("suggestions").innerHTML = suggestionsHTML;
+    }, 300);
+  }
+  
+  function displayError(message) {
+    const resultsDiv = document.getElementById("results");
+    resultsDiv.style.opacity = "0";
+    resultsDiv.style.display = "block";
+    setTimeout(() => {
+      resultsDiv.style.opacity = "1";
+      resultsDiv.innerHTML = `<p class="error">${message}</p>`;
+    }, 300);
   }
   
