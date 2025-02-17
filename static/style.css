@@ -103,6 +103,16 @@ button:hover {
     display: none;
 }
 
+/* Suggestions Styling */
+#suggestions ul {
+    list-style: none;
+    padding: 0;
+}
+
+#suggestions li::before {
+    content: "⚡ ";
+}
+
 /* Custom Glow Animation */
 @keyframes glow {
     0% { text-shadow: 0 0 5px #00ffcc; }
